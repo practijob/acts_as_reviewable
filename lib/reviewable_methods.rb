@@ -12,7 +12,7 @@ module RapidFire
       module ClassMethods
         def acts_as_reviewable(*args)
           review_roles = args.to_a.flatten.compact.map(&:to_sym)
-          write_inheritable_attribute(:review_types, (review_roles.blank? ? [:reviews] : review_roles))
+          class_attributes(:review_types, (review_roles.blank? ? [:reviews] : review_roles))
           class_inheritable_reader(:review_types)
 
           options = ((args.blank? or args[0].blank?) ? {} : args[0])
